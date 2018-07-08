@@ -83,6 +83,33 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 });          
  
 
+client.on("guildMemberAdd", function(member) {
+    const wc = member.guild.channels.find("name", "🎉»✴↑↑𝑾𝑬𝑳𝑪𝑶𝑴𝑬↑↑✴«🎉")
+        const embed = new Discord.RichEmbed()
+        .setColor('363940')
+        .setAuthor(member.user.tag, member.user.avatarURL)
+ .setDescription('')
+.setThumbnail(member.avatarURL)
+  .setImage('https://cdn.discordapp.com/attachments/459347899046690817/465563057658265600/download.png')
+        .setTimestamp()
+        return wc.sendEmbed(embed);
+        
+});
+var dat = JSON.parse("{}");
+function forEachObject(obj, func) {
+    Object.keys(obj).forEach(function (key) { func(key, obj[key]) });
+}
+client.on("ready", () => {
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("395147213065682956");
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            dat[Inv] = Invite.uses;
+        });
+    });
+});
 
 
 
