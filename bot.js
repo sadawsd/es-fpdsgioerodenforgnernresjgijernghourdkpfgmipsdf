@@ -76,7 +76,16 @@ client.on("ready", () => {
     });
 });
 
-
+client.on('message', message => {
+    var prefix = "a!"
+    if (message.content === prefix + "date") {
+        var currentTime = new Date(),
+            السنة = currentTime.getFullYear(),
+            الشهر = currentTime.getMonth() + 1,
+            اليوم = currentTime.getDate();
+        message.channel.sendMessage( "التاريخ : " + اليوم + "-" + الشهر + "-" +السنة)
+    }
+});
 
 
 
