@@ -27,5 +27,83 @@ client.user.setGame(`Nothing`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
 });
+client.on("guildMemberAdd", function(member) {
+    const wc = member.guild.channels.find("name", "🎉»✴↑↑𝑾𝑬𝑳𝑪𝑶𝑴𝑬↑↑✴«🎉")
+        const embed = new Discord.RichEmbed()
+        .setColor('00FF01')
+        .setAuthor(member.user.tag, member.user.avatarURL)
+        .setFooter("اهلا وسهلا فيك ومرحبتين منور  ")
+        .setTimestamp()
+        return wc.sendEmbed(embed);
+});
+
+client.on("guildMemberRemove", function(member) {
+    const wc = member.guild.channels.find("name", "🎉»✴↑↑𝑾𝑬𝑳𝑪𝑶𝑴𝑬↑↑✴«🎉")
+        const embed = new Discord.RichEmbed()
+        .setColor('FF0000')
+        .setAuthor(member.user.tag, member.user.avatarURL)
+        .setFooter("خرج عضو انشالله يكون استمتع معنا ")
+        .setTimestamp()
+        return wc.sendEmbed(embed);
+});
+
+const developers = ["457732668155494402","",""]
+const adminprefix = "a!";
+client.on('message', message => {
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!developers.includes(message.author.id)) return;
+      
+  if (message.content.startsWith(adminprefix + 'ply')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+     if (message.content === (adminprefix + "leave")) {
+    message.guild.leave();        
+  } else  
+  if (message.content.startsWith(adminprefix + 'wt')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'ls')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**✅   ${argresult}**`)
+  } else 
+  if (message.content.startsWith(adminprefix + 'st')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/idk");
+      message.channel.send(`**✅**`)
+  }
+  if (message.content.startsWith(adminprefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`Changing The Name To ..**${argresult}** `)
+} else
+if (message.content.startsWith(adminprefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`Changing The Avatar To :**${argresult}** `);
+}
+});          
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 client.login(process.env.BOT_TOKEN);
